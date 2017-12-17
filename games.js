@@ -11,6 +11,8 @@ const znow = Joda.ZonedDateTime.now(Joda.ZoneId.of('America/New_York'));
 const FORMATTER = require('js-joda').DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXXXX");
 let settings = {username: '', teams: []};
 
+browser.waitDuration = 30000;
+
 fs.readFile('settings.json', function(err, data){
     if(!err)
         settings = JSON.parse(data);
@@ -20,6 +22,10 @@ function getGames() {
     var records = [];
     return new Promise(function(resolve, reject){
         browser.visit('http://team4545league.org/tournament/games.html')
+            .catch(function(err){
+               console.log(err);
+               process.exit(0);
+            })
             .then(function(){
                 const nodes = browser.querySelectorAll('tr');
                 for(let x = 2 ; x < nodes.length ; x++)
@@ -92,9 +98,11 @@ gmail.authenticate()
         });
         let promises = [];
         leftover_games.forEach(function(game){
+            console.log('Adding event: ' + otherteam(game) + ' ' + game.white + ' ' + game.black + ' ' + game.when);
             promises.push(gmail.insert(otherteam(game), game.white, game.black, game.when));
         });
         events.forEach(function(event){
+            console.log('Deleting event: ' + event.summary + ' ' + event.start.dateTime);
             promises.push(gmail.delete(event));
         });
         return Promise.all(promises);
