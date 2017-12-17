@@ -3,7 +3,7 @@ const browser = new (require('zombie'))();
 const google = require('googleapis');
 const googleAuth = require('google-auth-library');
 const fs = require('fs');
-const GMail = require('./gmail');
+const GCalendar = require('./gcal');
 const Joda = require('js-joda').use(require('js-joda-timezone'));
 const _ = require('underscore');
 const now = new Date();
@@ -56,7 +56,7 @@ function getGames() {
     });
 }
 
-const gmail = new GMail();
+const gmail = new GCalendar();
 var events = null;
 var leftover_games = [];
 
