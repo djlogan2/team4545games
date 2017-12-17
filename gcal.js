@@ -100,7 +100,7 @@ Calendar.prototype.delete = function(event) {
     const self = this;
     return new Promise(function(resolve,reject){
         const calendar = self.google.calendar('v3');
-        calendar.events.list({
+        calendar.events.delete({
             calendarId: self.calendarId,
             eventId: event.id
         }, function(err){
