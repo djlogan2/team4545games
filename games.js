@@ -35,7 +35,7 @@ function getGames() {
                     // [ 'Sat', '', 'Dec', '16', '', '07', '00' ]
                     const dt = nodes[x].cells[2].textContent.split(/[ ,:]/);
                     const month = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(dt[2]) / 3 + 1;
-                    const day = dt[3] - 1;
+                    const day = dt[3]; // - 1;
                     const hour = dt[5];
                     const min = dt[6];
                     const year = now.getFullYear() + (now.getMonth() > month ? 1 : 0);
