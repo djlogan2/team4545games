@@ -1,0 +1,33 @@
+{
+  "name": "team4545games",
+  "version": "0.1.1",
+  "description": "Reads the games page from team4545league.org and creates calendar entries for your teams games",
+  "main": "games.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "googleapis": "^23.0.0",
+    "js-joda": "^1.6.2",
+    "js-joda-timezone": "^1.1.5",
+    "underscore": "^1.8.3",
+    "zombie": "^5.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djlogan2/team4545games.git"
+  },
+  "keywords": [
+    "google-calendar",
+    "google-calendar-api",
+    "zombiejs"
+  ],
+  "author": "David Logan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djlogan2/team4545games/issues"
+  },
+  "homepage": "https://github.com/djlogan2/team4545games#readme"
+}
