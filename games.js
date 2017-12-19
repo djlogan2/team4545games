@@ -50,7 +50,7 @@ function getGames() {
                         white: nodes[x].cells[4].textContent,
                         black: nodes[x].cells[6].textContent
                     };
-                    if(record.when.isAfter(znow) &&
+                    if(record.when.minusHours(3).isAfter(znow) &&
                         record.white !== settings.username && record.black !== settings.username &&
                         (!settings || !settings.teams || !settings.teams.length ||
                             _.indexOf(settings.teams, record.white_team) != -1 || _.indexOf(settings.teams, record.black_team) != -1))
