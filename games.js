@@ -82,8 +82,14 @@ function getGames() {
                     };
 
                     record.player._team = record.team;
-                    if (record.when.minusHours(3).isAfter(znow) && !record.isourgame && record.isteamgame)
+                    //console.log('Checking to see if we need to process the game: ' + gmail.getSummary(record));
+                    if (!record.when.minusHours(3).isBefore(znow) && !record.isourgame && record.isteamgame) {
+                        console.log('Processing game ' + gmail.getSummary(record) + ' ' + record.when.toString());
                         records.push(record);
+                    } else {
+                        const reasons = [!record.when.minusHours(3).isBefore(znow), !record.isourgame, record.isteamgame];
+                        console.log('NOT processing game ' + gmail.getSummary(record) + ' ' + record.when.toString() + ' ' + reasons.join(',').toString());
+                    }
                 }
                 resolve(records);
             })
