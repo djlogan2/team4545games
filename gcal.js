@@ -129,22 +129,24 @@ Calendar.prototype.list = function () {
     });
 };
 
-Calendar.prototype.getSummary = function(team, white, black, start) {
-    return 'T4545: ' + white + '-' + black + '(' + team + ')';
+Calendar.prototype.getSummary = function (game) {
+    const W = (game.player.white === game.player.us ? '*' : '');
+    const B = (game.player.black === game.player.us ? '*' : '');
+    return 'T4545: ' + W + game.player.white + '-' + B + game.player.black + '(' + game.team.us + ')';
 };
 
-Calendar.prototype.insert = function(team, white, black, start) {
+Calendar.prototype.insert = function (game) {
     const self = this;
     const event = {
         calendarId: self.calendarId,
-        summary: self.getSummary(team, white, black, start),
+        summary: self.getSummary(game),
         // This is the 'notes' field  'description':  '[description] T4545: ' + white + '-' + black + '(' + team + ')',
         start: {
-            dateTime: start.format(FORMATTER),
+            dateTime: game.when.format(FORMATTER),
             //'timeZone': 'America/New_York',
         },
         end: {
-            dateTime: (start.plusHours(3)).format(FORMATTER),
+            dateTime: (game.when.plusHours(3)).format(FORMATTER),
             //'timeZone': 'America/New_York',
         }
     };
