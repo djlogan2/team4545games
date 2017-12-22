@@ -83,7 +83,7 @@ function getGames() {
 
                     record.player._team = record.team;
                     //console.log('Checking to see if we need to process the game: ' + gmail.getSummary(record));
-                    if (!record.when.minusHours(3).isBefore(znow) && !record.isourgame && record.isteamgame) {
+                    if (!record.when.plusHours(3).isBefore(znow) && !record.isourgame && record.isteamgame) {
                         console.log('Processing game ' + gmail.getSummary(record) + ' ' + record.when.toString());
                         records.push(record);
                     } else {
